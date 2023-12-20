@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Api 01</title>
+    <style>
+      .card {
+        font-size: 15px;
+        width: 15em;
+        height: 15em;
+        display: flex;
+        align-items: center;
+        border: 1px solid gray;
+        background-color: rgb(230, 230, 230);
+        flex-direction: column;
+        justify-content: space-evenly;
+      }
+      .img {
+        width: 40%;
+        height: 40%;
+        border-radius: 50%;
+        border: 1px solid black;
+      }
+      .h2 {
+        /* margin: auto; */
+        font-size: 1em;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="btn">Click to show the Card</button>
+    <!-- <div class="card">
+      <img src="" alt="Photo" />
+      <div class="fol">Followers</div>
+    </div> -->
+  </body>
+  <script>
+    function callFunction() {
+      const url = "https://api.github.com/users/hiteshchoudhary";
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", url);
+      xhr.onreadystatechange = function () {
+        console.log(xhr.readyState);
+        if (xhr.readyState === 4) {
+          const resData = this.responseText;
+          console.log(typeof resData);
+          // console.log(resData);
+          //    const resObj = Object(resData); //!This is Not CORRECT,IT IS actually JSON DATA
+          const resObj = JSON.parse(resData);
+          console.log(resObj);
+          const imgUrl = resObj.avatar_url;
+          const followers = resObj.followers;
+          createDiv(imgUrl, followers);
+          // console.log(resObj.public_repos);
+        }
+      };
+      xhr.send();
+    }
+    function createDiv(imgUrl, textRes) {
+      const card = document.createElement("div");
+      const img = document.createElement("img");
+      const h2 = document.createElement("h2");
+      img.setAttribute("src", imgUrl);
+      img.classList.add("img");
+      card.classList.add("card");
+      h2.classList.add("h2");
+      // card.style.backgroundColor = "red";
+      // card.style.width = "200px";
+      const newTextres = `Followers : ${textRes}`;
+      h2.innerHTML = newTextres;
+      console.log(img);
+      console.log(card);
+      console.log(h2);
+      card.appendChild(img);
+      card.appendChild(h2);
+      document.body.appendChild(card);
+    }
+    // createDiv(
+    //   "https://p16-capcut-va.ibyteimg.com/tos-maliva-i-6rr7idwo9f-us/e6c39ddc5a5246a5b9e6a806aacd4866~tplv-6rr7idwo9f-image.image",
+    //   "This is Content"
+    // );
+    const btn = document
+      .querySelector(".btn")
+      .addEventListener("click", (e) => {
+        e.target.remove();
+        callFunction();
+      });
+  </script>
+</html>

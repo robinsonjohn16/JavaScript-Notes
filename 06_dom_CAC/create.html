@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Creating Element Using JavaScript</title>
+  </head>
+  <body>
+    <script>
+      const div = document.createElement("div");
+      console.log(div);
+      div.className = "mainDiv";
+      div.id = "mainId";
+      div.setAttribute("title", "Some Text");
+      //  div.innerText = "This is Created usinf Javascript"; //? This is not optimised because it takes that value and replaces it. so it takes 2 tripes
+      const text = document.createTextNode("This is Created using Javascript");
+      div.appendChild(text);
+      document.body.appendChild(div);
+    </script>
+  </body>
+</html>

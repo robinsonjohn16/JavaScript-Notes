@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM First Video</title>
+  </head>
+  <body>
+    <div class="parent">
+      <!-- This is  -->
+      <div class="day">Monday</div>
+      <div class="day">Tuesday</div>
+      <div class="day">Wednesday</div>
+    </div>
+    <script>
+      const parent = document.querySelector(".parent");
+      console.log(parent);
+      console.log(parent.children);
+      //  Using Basic For loop
+      for (let index = 0; index < parent.children.length; index++) {
+        console.log(parent.children[index].innerText);
+      }
+      console.log(parent.firstElementChild);
+      console.log(parent.lastElementChild);
+
+      const day = document.querySelector(".day");
+      console.log(day.parentElement);
+      console.log(day.nextElementSibling);
+      //* Interesting
+      console.log(parent.childNodes);
+    </script>
+  </body>
+</html>

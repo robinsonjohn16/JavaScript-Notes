@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Basic Events in JavaScript</title>
+    <style>
+      .main-div {
+        width: 20vw;
+        height: 20vw;
+        background-color: aquamarine;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-div">
+      <p>This is the paragraph of main div</p>
+    </div>
+    <ul>
+      <div>This is A normal Div</div>
+      <li>li 1</li>
+      <li>li 2</li>
+      <li>li 3</li>
+      <li>li 4</li>
+      <li>li 5</li>
+    </ul>
+  </body>
+  <script>
+    //* We Can use the onClick But it is not scalable=> In React is is Exception
+    // Second Way
+    //     document.querySelector("div").onclick = function () {
+    //  alert("Div is Clicked");
+    //     }; //This way works but it offers very less Information
+
+    document.querySelector("div").addEventListener(
+      "click",
+      (e) => {
+        console.log(e);
+        alert("Div is Clicked");
+      },
+      false // Event Propogation
+    );
+    // Event Propogation False is default
+    // 1) Event bubling => false, down to up=> first inner than outer
+    // 2) Event Capturing => top to bottom
+
+    //  Learn type, timestamp, defaultPrevented=> Changing the default behaviour, target,
+    //  toElement, currentTarget, clientX, clientY, screenX, screenY
+    //  altkey, ctrlkey, shiftkey, keyCode
+
+    // Event proprgation
+    // document.querySelector("ul").addEventListener(
+    //   "click",
+    //   () => {
+    //     console.log("ul Clicked");
+    //   },
+    //   false
+    // );
+    // document.querySelector("li").addEventListener(
+    //   "click",
+    //   (e) => {
+    //     e.stopPropagation();
+    //     console.log("li Clicked");
+    //   },
+    //   true
+    // );
+
+    document.querySelector("ul").addEventListener("click", (e) => {
+      console.log(e.target.tagName);
+      // It we have to remove only li not div
+      if (e.target.tagName === "LI") {
+        console.log(e.target.remove());
+      }
+    });
+  </script>
+</html>

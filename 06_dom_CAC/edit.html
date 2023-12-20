@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Adding the Element</title>
+  </head>
+  <body>
+    <nav>
+      <ul class="lang">
+        <li>JavaScript</li>
+      </ul>
+    </nav>
+    <script>
+      function addLanguage(language) {
+        const li = document.createElement("li");
+        li.innerText = `${language}`;
+        document.querySelector("ul").appendChild(li);
+      }
+      addLanguage("Python");
+      function optiAddLanguage(language) {
+        const li = document.createElement("li");
+        li.appendChild(document.createTextNode(language));
+        document.querySelector("ul").appendChild(li);
+      }
+      optiAddLanguage("C++");
+
+      
+    </script>
+  </body>
+</html>
